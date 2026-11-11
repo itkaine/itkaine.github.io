@@ -2,7 +2,9 @@ import { motion } from "motion/react";
 import { SITE } from "../config.js";
 import Section, { fadeUp } from "./Section.jsx";
 
-const icon = (id) => `https://skillicons.dev/icons?i=${encodeURIComponent(id)}`;
+// skillicons.dev chưa có các icon này → dùng file riêng trong public/icons
+const CUSTOM = { ionic: "/icons/ionic.svg" };
+const icon = (id) => CUSTOM[id] ?? `https://skillicons.dev/icons?i=${encodeURIComponent(id)}`;
 
 export default function Stack() {
   const all = Object.values(SITE.stack).flat();

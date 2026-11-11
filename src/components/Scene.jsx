@@ -17,8 +17,8 @@ function Blob() {
       <mesh ref={ref} scale={1.25}>
         <icosahedronGeometry args={[1, 64]} />
         <MeshDistortMaterial
-          color="#5a3bd6"
-          emissive="#e45fb0"
+          color="#1d4ed8"
+          emissive="#22d3ee"
           emissiveIntensity={0.2}
           roughness={0.15}
           metalness={0.3}
@@ -36,10 +36,10 @@ export default function Scene() {
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 1.8]} gl={{ antialias: true, alpha: true }}>
         <ambientLight intensity={0.4} />
         <directionalLight position={[3, 3, 4]} intensity={1.8} color="#ffffff" />
-        <pointLight position={[-4, -2, 2]} intensity={40} color="#2cb67d" />
-        <pointLight position={[4, -3, -2]} intensity={40} color="#e45fb0" />
+        <pointLight position={[-4, -2, 2]} intensity={40} color="#a3e635" />
+        <pointLight position={[4, -3, -2]} intensity={40} color="#22d3ee" />
         <Blob />
-        <Sparkles count={70} scale={[9, 6, 4]} size={2.2} speed={0.35} color="#e45fb0" />
+        <Sparkles count={70} scale={[9, 6, 4]} size={2.2} speed={0.35} color="#22d3ee" />
       </Canvas>
     </div>
   );
