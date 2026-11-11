@@ -6,7 +6,7 @@ import Magnetic from "./Magnetic.jsx";
 export default function Contact() {
   return (
     <>
-      <Section id="contact" index="04." title="Contact">
+      <Section id="contact" index={SITE.experience.length ? "05." : "04."} title="Contact">
         <motion.p className="big" variants={fadeUp}>
           Let's build something <em>beautiful</em> together.
         </motion.p>

@@ -13,6 +13,10 @@ Mỗi lần push lên `main`, **GitHub Actions** tự build và deploy.
 - Thanh menu dạng viên thuốc: tự ẩn khi cuộn xuống, có vệt sáng chạy theo mục đang xem.
 - Băng icon chạy vô tận, icon nảy lên khi cuộn tới.
 - Thẻ project nghiêng 3D theo chuột, có vệt phản chiếu ánh sáng.
+- Màn intro đếm 0 → 100 khi mở trang lần đầu, cuộn mượt kiểu Apple (Lenis).
+- Tiêu đề mục xáo chữ khi rê chuột, băng chữ lớn chạy ngang theo tốc độ cuộn.
+- Mục About dạng bento: đồng hồ giờ VN, vị trí, số liệu GitHub đếm chạy.
+- Thẻ project có ảnh bìa gradient tự tạo; Timeline tự vẽ đường khi cuộn.
 - Người dùng bật "Reduce motion" trong hệ điều hành thì hiệu ứng tự giảm.
 
 ## Cấu trúc
@@ -60,6 +64,9 @@ Sửa `src/config.js` → xem thử bằng `bun run dev` → commit, push. Kho�
 | Đổi stack trong khối code | `mainStack` |
 | Thêm/bớt icon công nghệ | `stack`, ID trên [skillicons.dev](https://skillicons.dev) |
 | Ghim / ẩn repo | `featured` / `hidden` |
+| Ảnh bìa project thật | bỏ ảnh vào `public/projects/`, khai báo trong `projectImages` |
+| Thêm kinh nghiệm | `experience` (để `[]` thì mục Experience tự ẩn) |
+| Chữ lớn chạy ngang | `marquee` |
 | Thêm mạng xã hội | `socials` |
 
 Đổi màu khối 3D: sửa `color`, `emissive` trong `src/components/Scene.jsx`.

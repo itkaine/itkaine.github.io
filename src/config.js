@@ -28,8 +28,21 @@ export const SITE = {
 
   // Repo ghim lên đầu (tên repo). Các repo public khác (không phải fork) tự hiện bên dưới.
   featured: ["github-profile-readme-kit", "dns-changer-pro"],
+  // Ảnh bìa riêng cho project (đặt file vào public/projects/). Không có thì tự tạo ảnh gradient.
+  // Ví dụ: "dns-changer-pro": "/projects/dns-changer-pro.png"
+  projectImages: {},
   // Repo không muốn hiện
   hidden: ["itkaine", "itkaine.github.io"],
+
+  // Múi giờ cho ô đồng hồ ở mục About
+  timezone: "Asia/Ho_Chi_Minh",
+
+  // Kinh nghiệm / học tập. Để trống [] thì mục Experience tự ẩn.
+  // Mẫu: { time: "2023 — Now", title: "Frontend Developer", place: "Tên công ty", desc: "Làm gì, dùng công nghệ gì." }
+  experience: [],
+
+  // Chữ lớn chạy ngang giữa các mục
+  marquee: ["React", "Vue", "Angular", "Ionic", "TypeScript", "Figma"],
 
   socials: [
     { label: "GitHub", url: "https://github.com/itkaine" },

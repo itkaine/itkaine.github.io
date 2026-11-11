@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
 
-const links = ["about", "stack", "projects", "contact"];
+import { SITE } from "../config.js";
+
+const links = ["about", "stack", "projects", ...(SITE.experience.length ? ["experience"] : []), "contact"];
 
 export default function Nav() {
   const { scrollY } = useScroll();

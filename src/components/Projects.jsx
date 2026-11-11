@@ -3,7 +3,10 @@ import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } fr
 import { SITE } from "../config.js";
 import Section, { fadeUp } from "./Section.jsx";
 
-function TiltCard({ repo, featured }) {
+// Mỗi repo một góc gradient khác nhau, cố định theo tên
+const hue = (name) => [...name].reduce((a, c) => a + c.charCodeAt(0), 0) % 360;
+
+function TiltCard({ repo, featured, wide }) {
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
   const rx = useSpring(useTransform(my, [0, 1], [10, -10]), { stiffness: 200, damping: 18 });
@@ -21,14 +24,23 @@ function TiltCard({ repo, featured }) {
 
   return (
     <motion.article
-      className="card"
+      className={`card${wide ? " wide" : ""}`}
       variants={fadeUp}
       style={{ rotateX: rx, rotateY: ry, transformPerspective: 900 }}
       onPointerMove={move}
       onPointerLeave={leave}
     >
       <motion.div className="glare" style={{ background: glare }} />
-      {featured && <span className="badge">★ Featured</span>}
+      <a className="thumb" href={repo.html_url} target="_blank" rel="noopener" tabIndex={-1}>
+        {SITE.projectImages?.[repo.name] ? (
+          <img src={SITE.projectImages[repo.name]} alt={`${repo.name} preview`} loading="lazy" />
+        ) : (
+          <div className="gen" style={{ "--h": hue(repo.name) }} aria-hidden>
+            <span>{repo.name.replace(/[-_]/g, " ")}</span>
+          </div>
+        )}
+        {featured && <span className="badge">★ Featured</span>}
+      </a>
       <h3>{repo.name}</h3>
       <p>{repo.description || "No description yet."}</p>
       {repo.topics?.length > 0 && (
@@ -70,7 +82,9 @@ export default function Projects() {
       )}
       {state.status === "ok" && (
         <motion.div className="grid" initial="hidden" animate="show" transition={{ staggerChildren: 0.12 }}>
-          {state.repos.map((r) => <TiltCard key={r.id} repo={r} featured={SITE.featured.includes(r.name)} />)}
+          {state.repos.map((r, i) => (
+            <TiltCard key={r.id} repo={r} featured={SITE.featured.includes(r.name)} wide={i === 0 && state.repos.length % 2 === 1 && state.repos.length > 1} />
+          ))}
         </motion.div>
       )}
     </Section>
