@@ -1,77 +1,19 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kai · Frontend Developer</title>
-  <meta name="description" content="Kai — Frontend Developer from Vietnam. React, Vue, Angular, Ionic, TypeScript." />
-  <meta property="og:title" content="Kai · Frontend Developer" />
-  <meta property="og:description" content="Building pixel-perfect interfaces." />
-  <meta property="og:image" content="https://github.com/itkaine.png" />
-  <link rel="icon" href="https://github.com/itkaine.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Fira+Code:wght@500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <script>
-    try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
-  </script>
-</head>
-<body>
-  <header class="nav">
-    <a class="brand" href="#top">kai<span>.dev</span></a>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#stack">Stack</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <button id="theme" class="icon-btn" aria-label="Toggle theme">◐</button>
-    </nav>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="blob b1"></div><div class="blob b2"></div>
-      <img id="avatar" class="avatar" alt="Avatar" width="120" height="120" />
-      <p class="hello">Hi, I'm</p>
-      <h1 id="name">Kai</h1>
-      <p class="role"><span id="role"></span> · <span id="location"></span></p>
-      <p class="typing"><span id="typed"></span><span class="caret">|</span></p>
-      <div class="cta">
-        <a class="btn primary" href="#projects">See my work</a>
-        <a class="btn" href="#contact">Say hi</a>
-      </div>
-    </section>
-
-    <section id="about" class="section reveal">
-      <h2><span>01.</span> About</h2>
-      <div class="about">
-        <div id="about-text"></div>
-        <pre class="code"><code id="about-code"></code></pre>
-      </div>
-    </section>
-
-    <section id="stack" class="section reveal">
-      <h2><span>02.</span> Tech stack</h2>
-      <div id="stack-list" class="stack"></div>
-    </section>
-
-    <section id="projects" class="section reveal">
-      <h2><span>03.</span> Projects</h2>
-      <div id="project-list" class="grid"><p class="muted">Loading projects…</p></div>
-    </section>
-
-    <section id="contact" class="section reveal">
-      <h2><span>04.</span> Contact</h2>
-      <p class="muted">Open to collaboration and freelance UI work. Find me here:</p>
-      <div id="social-list" class="socials"></div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>© <span id="year"></span> Kai · Built with plain HTML, CSS &amp; JS · Hosted on GitHub Pages</p>
-  </footer>
-
-  <script src="config.js"></script>
-  <script src="main.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kai · Frontend Developer</title>
+    <meta name="description" content="Kai — Frontend Developer from Vietnam. React, Vue, Angular, Ionic, TypeScript." />
+    <meta property="og:title" content="Kai · Frontend Developer" />
+    <meta property="og:description" content="Building pixel-perfect interfaces." />
+    <meta property="og:image" content="https://github.com/itkaine.png" />
+    <link rel="icon" href="https://github.com/itkaine.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Fira+Code:wght@500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

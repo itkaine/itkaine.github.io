@@ -1,7 +1,7 @@
 // ============================================================
 //  Sửa nội dung trang ở đây. Không cần đụng vào file khác.
 // ============================================================
-window.SITE = {
+export const SITE = {
   githubUser: "itkaine",
   name: "Kai",
   role: "Frontend Developer",

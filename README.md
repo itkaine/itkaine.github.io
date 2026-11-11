@@ -1,72 +1,78 @@
 # itkaine.github.io
 
-Portfolio cá nhân, chạy trên **GitHub Pages** tại https://itkaine.github.io.
-HTML, CSS và JS thuần: không build, không thư viện, không API key.
+Portfolio cá nhân tại https://itkaine.github.io.
+Dùng **React + Vite**, animation bằng **Motion** (Framer Motion), khối 3D bằng **Three.js** (@react-three/fiber).
+Mỗi lần push lên `main`, **GitHub Actions** tự build và deploy.
+
+## Hiệu ứng có trong trang
+
+- Khối 3D biến dạng ở đầu trang, nghiêng theo chuột, có hạt sáng bay quanh.
+- Tên chạy từng chữ, chữ gradient đổi màu liên tục, dòng giới thiệu đổi lần lượt.
+- Quầng sáng và vòng tròn đi theo chuột (tự tắt trên điện thoại).
+- Nút "hút" theo chuột, thanh tiến độ cuộn ở mép trên.
+- Thanh menu dạng viên thuốc: tự ẩn khi cuộn xuống, có vệt sáng chạy theo mục đang xem.
+- Băng icon chạy vô tận, icon nảy lên khi cuộn tới.
+- Thẻ project nghiêng 3D theo chuột, có vệt phản chiếu ánh sáng.
+- Người dùng bật "Reduce motion" trong hệ điều hành thì hiệu ứng tự giảm.
 
 ## Cấu trúc
 
 | File | Dùng để |
 |---|---|
-| `config.js` | **Toàn bộ nội dung**: tên, vai trò, câu chạy chữ, giới thiệu, tech stack, repo nổi bật, mạng xã hội. Thường chỉ cần sửa file này |
-| `index.html` | Khung trang và thẻ SEO (`<title>`, `og:*`) |
-| `style.css` | Giao diện. Màu chính nằm trong `:root` ở đầu file |
-| `main.js` | Đổ dữ liệu từ `config.js` vào trang, lấy danh sách repo từ GitHub API, hiệu ứng |
-| `404.html` | Trang khi gõ sai đường dẫn |
-| `.nojekyll` | Báo GitHub Pages không chạy Jekyll, phục vụ file nguyên trạng |
+| `src/config.js` | **Toàn bộ nội dung**: tên, câu chạy chữ, giới thiệu, stack, repo nổi bật/ẩn, mạng xã hội. Thường chỉ sửa file này |
+| `src/components/` | Từng phần của trang: `Hero`, `Scene` (3D), `About`, `Stack`, `Projects`, `Contact`, `Nav`, `Cursor`… |
+| `src/styles.css` | Giao diện. Màu chính trong `:root` ở đầu file |
+| `index.html` | Thẻ `<title>` và SEO |
+| `public/404.html` | Trang khi gõ sai đường dẫn |
+| `.github/workflows/deploy.yml` | Tự build và deploy lên Pages |
 
-## Đưa lên lần đầu
+## Bật deploy bằng GitHub Actions (làm 1 lần)
 
-1. Mở **GitHub Desktop** → `File` → `Add local repository` → chọn thư mục `~/Project/itkaine.github.io`.
-2. Bấm **Publish repository**:
-   - Name: `itkaine.github.io` (phải đúng y tên này)
-   - **Bỏ tick** "Keep this code private"
-   - Account: `itkaine`
-3. Vào https://github.com/itkaine/itkaine.github.io/settings/pages và kiểm tra:
-   - Source: **Deploy from a branch**
-   - Branch: **main** / **(root)** → Save
-4. Đợi 1–2 phút (xem tiến độ ở tab **Actions**), rồi mở https://itkaine.github.io.
+1. Commit và push bằng GitHub Desktop.
+2. Vào https://github.com/itkaine/itkaine.github.io/settings/pages
+3. **Source**: đổi từ "Deploy from a branch" sang **GitHub Actions**.
+4. Vào tab **Actions**, đợi workflow "Deploy to GitHub Pages" xanh (~1 phút), rồi mở https://itkaine.github.io.
+   Nếu workflow chạy trước khi bạn đổi Source mà bị đỏ: bấm vào nó → **Re-run all jobs**.
+
+## Chạy ở máy
+
+```bash
+cd ~/Project/itkaine.github.io && bun install
+```
+
+```bash
+bun run dev
+```
+
+Mở http://localhost:5173, sửa code là trang tự cập nhật.
+Kiểm tra bản build giống trên mạng: `bun run build` rồi `bun run preview`.
+
+> Script dùng `bunx --bun vite` vì Node trên máy là v18, Vite mới cần Node 20+. Chạy bằng Bun thì không bị lỗi này.
 
 ## Cập nhật nội dung
 
-1. Sửa `config.js` (hoặc file khác).
-2. Xem thử ở máy (bên dưới).
-3. Commit và push bằng GitHub Desktop. Trang tự cập nhật sau khoảng 1 phút.
-   Nếu chưa thấy thay đổi: tải lại bằng `Cmd + Shift + R`.
+Sửa `src/config.js` → xem thử bằng `bun run dev` → commit, push. Khoảng 1 phút sau trang tự cập nhật.
 
-### Các chỉnh sửa hay dùng (trong `config.js`)
-
-| Muốn | Sửa |
+| Muốn | Sửa trong `src/config.js` |
 |---|---|
 | Đổi câu chạy chữ | `typing` |
-| Đổi đoạn giới thiệu | `about` (mỗi phần tử là 1 đoạn) |
-| Thêm/bớt icon công nghệ | `stack`, dùng ID trên [skillicons.dev](https://skillicons.dev) |
-| Ghim repo lên đầu | thêm tên repo vào `featured` |
-| Ẩn một repo | thêm tên repo vào `hidden` |
-| Thêm mạng xã hội | thêm `{ label, url }` vào `socials` |
+| Đổi đoạn giới thiệu | `about` |
+| Đổi stack trong khối code | `mainStack` |
+| Thêm/bớt icon công nghệ | `stack`, ID trên [skillicons.dev](https://skillicons.dev) |
+| Ghim / ẩn repo | `featured` / `hidden` |
+| Thêm mạng xã hội | `socials` |
+
+Đổi màu khối 3D: sửa `color`, `emissive` trong `src/components/Scene.jsx`.
 
 ### Mục Projects tự cập nhật
 
-Danh sách lấy trực tiếp từ GitHub: mọi repo **public, không phải fork** của `itkaine`.
-Để một project hiện đẹp, vào trang repo đó → ⚙️ cạnh **About**:
-- **Description**: thành dòng mô tả trên thẻ.
-- **Website**: hiện thêm nút **Live ↗**.
-
-## Xem thử ở máy
-
-```bash
-cd ~/Project/itkaine.github.io && bunx serve .
-```
-
-Rồi mở http://localhost:3000. Không mở trực tiếp file `index.html`, vì khi đó trang 404 và một số đường dẫn sẽ sai.
-
-## Tên miền riêng (tuỳ chọn)
-
-1. Mua domain, ví dụ `kai.dev`.
-2. Settings → Pages → **Custom domain** → nhập domain → Save. GitHub sẽ tạo file `CNAME`.
-3. Ở nhà cung cấp domain, trỏ DNS theo [hướng dẫn của GitHub](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
-4. Bật **Enforce HTTPS**.
+Lấy trực tiếp từ GitHub: mọi repo **public, không phải fork**. Trên trang repo → ⚙️ cạnh **About**:
+- **Description** → dòng mô tả trên thẻ
+- **Website** → nút **Live ↗**
+- **Topics** → các tag `#...` trên thẻ
 
 ## Lưu ý
 
-- Repo này **public**: chỉ để project cá nhân. Không đưa code, ảnh chụp hay demo của dự án công ty (HappySkin, Emmie, Cogni, IBP) lên đây.
-- GitHub API không cần đăng nhập, giới hạn 60 lượt/giờ cho mỗi IP người xem. Nếu vượt, trang hiện link sang GitHub thay cho danh sách.
+- Repo **public**: chỉ để project cá nhân, không đưa code/ảnh/demo dự án công ty (HappySkin, Emmie, Cogni, IBP).
+- Không commit thư mục `dist/` và `node_modules/` (đã có trong `.gitignore`).
+- GitHub API không đăng nhập giới hạn 60 lượt/giờ mỗi IP người xem; vượt thì trang hiện link sang GitHub.
